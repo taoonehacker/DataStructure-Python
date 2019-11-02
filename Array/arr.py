@@ -25,3 +25,34 @@ class Array(object):
 
     def addLast(self, e):
         self.add(self.__size, e)
+
+    def get(self, index):
+        if index < 0 or index > self.__size:
+            raise IndexError("Index is required. Index >=0 and Index < size")
+        return self.__data[index]
+
+    def set(self, index, e):
+        if index < 0 or index > self.__size:
+            raise IndexError("Index is required. Index >=0 and Index < size")
+        self.__data[index] = e
+
+    def contains(self, e):
+        for i in range(0, self.__size):
+            if self.__data[i] == e:
+                return True
+        return False
+
+    def find(self, e):
+        for i in range(0, self.__size):
+            if self.__data[i] == e:
+                return i
+        return -1
+
+    def remove(self, index):
+        if index < 0 or index > self.__size:
+            raise IndexError("Index is required. Index >=0 and Index < size")
+        res = self.get(index)
+        for i in range(index + 1, self.__size):
+            self.__data[i - 1] = self.__data[i]
+        self.__size -= 1
+        return res
